@@ -1,7 +1,6 @@
 {
   "name": "chatbot_rep01",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,10 +9,15 @@
     "type": "git",
     "url": "git+https://github.com/rajeshdsl/chatbot_rep01.git"
   },
-  "author": "",
+  "author": "Rajesh Selvaraj",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rajeshdsl/chatbot_rep01/issues"
   },
-  "homepage": "https://github.com/rajeshdsl/chatbot_rep01#readme"
+  "homepage": "https://github.com/rajeshdsl/chatbot_rep01#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "description": ""
 }
