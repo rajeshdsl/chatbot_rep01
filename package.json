@@ -16,6 +16,9 @@
   },
   "homepage": "https://github.com/rajeshdsl/chatbot_rep01#readme",
   "dependencies": {
+    "actions-on-google": "^2.5.0",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
     "express": "^4.16.4"
   },
   "devDependencies": {},
