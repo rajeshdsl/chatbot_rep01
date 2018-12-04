@@ -7,6 +7,10 @@ app.get("/",function(req,res){
     res.send('<h1>This is Rajesh web app</h1>');
 });
 
+app.get("/rajesh",function(req,res){
+    res.send('<h1>youre inside Rajesh web app</h1>');
+});
+
 //Start the express server to listen to a port in the server
 var listener = app.listen(
    process.env.PORT,
