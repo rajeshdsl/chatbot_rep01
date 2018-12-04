@@ -1,15 +1,37 @@
 //This section list the required libraries
 var express = require("express");
+const bodyParser = require('body-parser');
+const functions = require('firebase-functions');
+const {WebhookClient,Card,} = require('dialogflow-fulfillment');
+
 //Create an instance of express server
-var app = express();
+const expressApp = express().use(bodyParser.json());
+expressApp.post('/fulfillment', functions.https.onRequest((request, response) => {
+ const agent = new WebhookClient({ request, response });
+  function welcome(agent) {
+   agent.add(`Welcome to my agent in Heroku!`);
+   agent.add(new Card({
+       title: `This is Agent in Heroku`,
+       imageUrl: 'http://weknowyourdreams.com/images/robot/robot-02.jpg',
+       text: `I am here to serve you.\nPlease free to ask me anything! 💁`,
+       buttonText: 'Click Me to know more about me!',
+       buttonUrl: 'https://assistant.google.com/'
+     })
+   );
+ }
+ function fallback(agent) {
+   agent.add(`I didn't understand`);
+   agent.add(`I'm sorry, can you try again?`);
+ }
 
-app.get("/",function(req,res){
-    res.send('<h1>This is Rajesh web app</h1>');
-});
 
-app.get("/rajesh",function(req,res){
-    res.send('<h1>youre inside Rajesh web app</h1>');
-});
+ // Run the proper function handler based on the matched Dialogflow intent name
+ let intentMap = new Map();
+ intentMap.set('Default Welcome Intent', welcome);
+ intentMap.set('Default Fallback Intent', fallback);
+ agent.handleRequest(intentMap);
+})
+);
 
 //Start the express server to listen to a port in the server
 var listener = app.listen(
